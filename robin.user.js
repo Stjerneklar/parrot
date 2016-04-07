@@ -1286,6 +1286,32 @@
             selectChannel(newChanIdx);
         }
     });
+    
+  $(function() {
+  var pressed = false;
+  $(document).keypress(function(e){
+            console.log("event");
+    if (event.keyCode == 10 || event.keyCode == 13) {
+        console.log("enter");
+      if( pressed === true ) {
+         e.preventDefault();
+        console.log("stopped");
+         return false;
+      }
+ 
+      pressed = true;
+      setTimeout(function() {
+var ee = jQuery.Event("keypress");
+ee.which = 13; 
+ee.keyCode = 13;
+$(document).trigger(ee);
+		pressed = false }, 6000);
+      }
+  });
+});
+
+          
+
 
 GM_addStyle(" \
     .robin--username { \
